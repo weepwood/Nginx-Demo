@@ -1,0 +1,41 @@
+server:
+  port: ${SERVER_PORT:8002}
+  shutdown: graceful
+  compression:
+    enabled: true
+    min-response-size: 1024
+
+spring:
+  application:
+    name: nginx-demo
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+
+image:
+  base-url: ${IMAGE_BASE_URL:http://localhost:8081/images/}
+  username: ${IMAGE_USERNAME:mrr-image}
+  password: ${IMAGE_PASSWORD:change-me}
+  connect-timeout: ${IMAGE_CONNECT_TIMEOUT:5s}
+  read-timeout: ${IMAGE_READ_TIMEOUT:60s}
+  max-directory-bytes: ${IMAGE_MAX_DIRECTORY_BYTES:4194304}
+  max-directory-entries: ${IMAGE_MAX_DIRECTORY_ENTRIES:500}
+
+app:
+  auth:
+    username: ${APP_AUTH_USERNAME:demo}
+    password: ${APP_AUTH_PASSWORD:demo-pass}
+    token: ${APP_AUTH_TOKEN:demo-token-change-me}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+logging:
+  level:
+    root: INFO
+    com.weepwood.nginxdemo: INFO
