@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1100" viewBox="0 0 800 1100">
+  <rect width="800" height="1100" fill="#f8fafc"/>
+  <rect x="70" y="60" width="660" height="980" rx="18" fill="white" stroke="#d6deea" stroke-width="4"/>
+  <text x="400" y="150" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="44" font-weight="700" fill="#172033">示例病案影像</text>
+  <text x="120" y="235" font-family="Segoe UI, sans-serif" font-size="26" fill="#344054">病案号：00000001</text>
+  <text x="120" y="285" font-family="Segoe UI, sans-serif" font-size="26" fill="#344054">上架号：00001001</text>
+  <line x1="120" y1="345" x2="680" y2="345" stroke="#cbd5e1" stroke-width="3"/>
+  <g fill="#94a3b8"><rect x="120" y="400" width="560" height="18" rx="9"/><rect x="120" y="455" width="520" height="18" rx="9"/><rect x="120" y="510" width="550" height="18" rx="9"/><rect x="120" y="565" width="490" height="18" rx="9"/><rect x="120" y="620" width="540" height="18" rx="9"/></g>
+  <circle cx="400" cy="810" r="115" fill="#e7efff"/>
+  <path d="M400 735v150M325 810h150" stroke="#276ef1" stroke-width="34" stroke-linecap="round"/>
+  <text x="400" y="980" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="22" fill="#64748b">仅用于演示，不包含真实医疗数据</text>
+</svg>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Nginx 受保护资源代理 Demo</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Nginx Basic Auth × Spring Boot Proxy</p>
+        <h1>受保护资源代理 Demo</h1>
+        <p class="subtitle">浏览器只访问后端，Nginx 用户名和密码不会下发到前端。</p>
+      </div>
+      <div id="connectionBadge" class="badge badge-muted">未连接</div>
+    </header>
+
+    <section id="loginPanel" class="panel login-panel">
+      <div>
+        <h2>登录 Demo 后端</h2>
+        <p>默认演示账号：<code>demo</code> / <code>demo-pass</code></p>
+      </div>
+      <form id="loginForm" class="login-form">
+        <label>用户名<input id="username" name="username" value="demo" autocomplete="username" required></label>
+        <label>密码<input id="password" name="password" type="password" value="demo-pass" autocomplete="current-password" required></label>
+        <button type="submit">登录并读取资源</button>
+      </form>
+      <p id="loginMessage" class="message" aria-live="polite"></p>
+    </section>
+
+    <section id="browserPanel" class="panel browser-panel hidden">
+      <div class="toolbar">
+        <div>
+          <h2>图片目录</h2>
+          <nav id="breadcrumbs" class="breadcrumbs" aria-label="目录导航"></nav>
+        </div>
+        <div class="toolbar-actions">
+          <button id="refreshButton" class="button-secondary" type="button">刷新</button>
+          <button id="logoutButton" class="button-secondary" type="button">退出</button>
+        </div>
+      </div>
+      <div id="statusMessage" class="message" aria-live="polite"></div>
+      <div id="resourceGrid" class="resource-grid"></div>
+    </section>
+
+    <section class="panel architecture-panel">
+      <h2>请求链路</h2>
+      <div class="flow">
+        <span>浏览器 Bearer Token</span><strong>→</strong>
+        <span>Spring Boot 后端代理</span><strong>→</strong>
+        <span>Nginx Basic Auth</span><strong>→</strong>
+        <span>受保护文件</span>
+      </div>
+      <p>图片通过 Fetch 获取 Blob，再生成临时 <code>blob:</code> URL，避免底层 Nginx 地址和凭据暴露。</p>
+    </section>
+  </main>
+
+  <template id="directoryTemplate">
+    <button class="resource-card directory-card" type="button">
+      <span class="resource-icon">📁</span>
+      <span class="resource-name"></span>
+      <span class="resource-meta">目录</span>
+    </button>
+  </template>
+
+  <template id="fileTemplate">
+    <article class="resource-card file-card">
+      <div class="preview-shell">
+        <div class="preview-placeholder">加载中</div>
+        <img class="preview-image" alt="" loading="lazy">
+      </div>
+      <div class="resource-info">
+        <strong class="resource-name"></strong>
+        <span class="resource-meta"></span>
+      </div>
+      <a class="download-link" href="#">下载</a>
+    </article>
+  </template>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

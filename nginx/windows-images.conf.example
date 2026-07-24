@@ -1,0 +1,18 @@
+server {
+    listen 8081;
+    server_name _;
+
+    location /images/ {
+        # 修改为真实资源目录；Windows Nginx 配置建议使用正斜杠。
+        alias D:/MRR/images/;
+        autoindex on;
+        autoindex_format json;
+        autoindex_exact_size on;
+        autoindex_localtime on;
+        auth_basic "MRR Image Server";
+        auth_basic_user_file C:/nginx/conf/image.htpasswd;
+        # 后端和图片服务同机时可只允许本机访问。
+        allow 127.0.0.1;
+        deny all;
+    }
+}
